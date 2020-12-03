@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+* {font-family: 'Montserrat', sans-serif;}
+input:focus, button:focus{outline: 0;}
+
+body{
+    width: 100vw;
+    max-width: 100%;
+    height: 100vh;
+    margin:0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+form{
+    width: 50vw;
+    height: 70vh;
+    position:absolute;
+    top: 50%; left:50%;
+    transform:translate(-50%,-50%);
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 5px 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+input[name="username"]{
+    margin-left:50%;
+    transform:translateX(-50%);
+    font-weight: 500;
+    margin-top: 0.5rem;
+    line-height: 200%;
+    text-align: center;
+    color: black;
+    font-size: 1.5rem;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+input[name="username"]:focus{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+#message-box{
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+#message-box div{
+    box-sizing: border-box;
+    border: 2px solid #f2f2f2;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 50%;
+    margin-top: 1rem;
+}
+
+#message-box strong, #message-box p{
+    margin: 0;
+}
+
+input[name="message"]{
+    width: 85%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing:border-box;
+    padding: .8rem .8rem .8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    border:1px solid rgb(190, 190, 190);
+   
+}
+
+button{
+    width: 2.9rem;
+    height: 2.9rem;
+    position: absolute;
+    right: 7.5%;
+    font-size: 1rem;
+    color: white;
+    background-color: #25d366;
+    border-radius:50%;
+    border:0;
+    box-shadow: 0px 2px 5px#25d3657e;
+    transition: .2s;
+}
+button:hover{
+    cursor: pointer;
+    box-shadow: 0px 5px 10px#25d3657e;
+}
+button:active{
+    box-shadow: 0px #25d3657e;
+}

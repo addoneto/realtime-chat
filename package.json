@@ -1,0 +1,16 @@
+{
+  "name": "realtime-chat",
+  "version": "1.0.0",
+  "description": "simple node realtime chat with socket.io",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "addoneto",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "socket.io": "^3.0.3"
+  }
+}

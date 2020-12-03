@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALTIME CHAT</title>
+
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/fa5af8f3d7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" class="css">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Google_Chat_icon_%282020%29.svg/1200px-Google_Chat_icon_%282020%29.png">
+</head>
+<body>
+    <form id="chat" method="post">
+        <input type="text" name="username" value="Username">
+        <div id="message-box">
+        </div>
+        <input type="text" name="message" placeholder="Type Something...">
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+    </form>
+
+    <script type="text/javascript">
+        const currentURI = window.location.href;
+        const socket = io(currentURI);
+
+        const chatForm = document.forms[0];
+        const usernameField = document.querySelector('input[name="username"]');
+        const messageField = document.querySelector('input[name="message"]');
+
+        window.onload = () => {
+            if(localStorage.getItem('username') != undefined)
+                usernameField.value = localStorage.getItem('username');
+        }
+
+        chatForm.onsubmit = (event) => {
+            event.preventDefault();
+
+            if(localStorage.getItem('username') != usernameField.value)
+                localStorage.setItem('username', usernameField.value);
+
+            if(usernameField.value && messageField.value){
+                const messageObj = {
+                    author: usernameField.value,
+                    message: messageField.value
+                };
+
+                renderMessage(messageObj);
+                socket.emit('sendMessage', messageObj);
+                messageField.value = '';
+            }
+        };
+
+        socket.on('receivedMessage', (msg) => {
+            renderMessage(msg);
+        });
+
+        socket.on('previousMessages', (allMsgs) => {
+            for(msg of allMsgs){
+                renderMessage(msg);
+            }
+        });
+
+        function renderMessage(msg){
+            document.getElementById('message-box')
+            .innerHTML += `<div><strong>${msg.author}</strong><br><p>${msg.message}</p></div>`;
+        }
+    </script>
+</body>
+</html>
