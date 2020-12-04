@@ -12,10 +12,10 @@
 </head>
 <body>
     <form id="chat" method="post">
-        <input type="text" name="username" value="Username">
+        <input type="text" name="username" value="Username" maxlength="30">
         <div id="message-box">
         </div>
-        <input type="text" name="message" placeholder="Type Something...">
+        <input type="text" name="message" placeholder="Type Something..." maxlength="1000">
         <button type="submit"><i class="fas fa-paper-plane"></i></button>
     </form>
 
@@ -24,6 +24,7 @@
         const socket = io(currentURI);
 
         const chatForm = document.forms[0];
+        const messageBox = document.getElementById('message-box');
         const usernameField = document.querySelector('input[name="username"]');
         const messageField = document.querySelector('input[name="message"]');
 
@@ -61,8 +62,8 @@
         });
 
         function renderMessage(msg){
-            document.getElementById('message-box')
-            .innerHTML += `<div><strong>${msg.author}</strong><br><p>${msg.message}</p></div>`;
+            messageBox.innerHTML += `<div><strong>${msg.author}</strong><br><p>${msg.message}</p></div>`;
+            messageBox.scrollTop = messageBox.scrollHeight;
         }
     </script>
 </body>
