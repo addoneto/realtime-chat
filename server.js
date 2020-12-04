@@ -14,7 +14,7 @@ app.use('/', (req, res) => {
 });
 
 let messages = [];
-const messageValidationRegex = /<div>|<script>|<button>|<input>/ig;
+const messageValidationRegex = /<div|<script|<button|<input|<form/ig;
 
 io.on('connection', (socket) => {
     console.log('\x1b[32m%s\x1b[0m', `Socket Connection ${socket.id}`);

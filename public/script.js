@@ -26,7 +26,7 @@ chatForm.onsubmit = (event) => {
             message: messageField.value
         };
 
-        const messageValidationRegex = /<div>|<script>|<button>|<input>/ig;
+        const messageValidationRegex = /<div|<script|<button|<input|<form/ig;
         if(messageValidationRegex.test(messageObj.author) ||
             messageValidationRegex.test(messageObj.message)){
                 alert('Write a valid text!');
