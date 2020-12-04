@@ -33,7 +33,7 @@ chatForm.onsubmit = (event) => {
                 return;
         }       
 
-        renderMessage(msg);
+        renderMessage(messageObj);
         socket.emit('sendMessage', messageObj);
         messageField.value = '';
     }
