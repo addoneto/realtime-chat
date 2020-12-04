@@ -30,8 +30,10 @@ chatForm.onsubmit = (event) => {
         if(messageValidationRegex.test(messageObj.author) ||
             messageValidationRegex.test(messageObj.message)){
                 alert('Write a valid text!');
+                return;
         }       
 
+        renderMessage(msg);
         socket.emit('sendMessage', messageObj);
         messageField.value = '';
     }

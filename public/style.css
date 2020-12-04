@@ -62,8 +62,8 @@ input[name="username"]:focus{
 
 #message-box strong, #message-box p{
     margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-overflow: clip;
+    word-wrap: break-word;
 }
 
 input[name="message"]{

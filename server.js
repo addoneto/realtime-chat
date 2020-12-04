@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
             return;
         }
         
-        io.to(socket.id).emit('sendMessage', data);
+        // io.to(socket.id).emit('sendMessage', data);
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
     });
