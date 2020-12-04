@@ -22,11 +22,7 @@ io.on('connection', (socket) => {
     socket.emit('previousMessages', messages);
 
     socket.on('sendMessage', data => {
-        if(data.message.length > 1000 ||
-            data.author.length > 30 ||
-            messageValidationRegex.test(data.author) ||
-            messageValidationRegex.test(data.message)){
-            
+        if(data.message.length > 1000 || data.author.length > 30 ){
             return;
         }
         
