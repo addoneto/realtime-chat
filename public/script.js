@@ -43,8 +43,7 @@ socket.on('previousMessages', (allMsgs) => {
 });
 
 function renderMessage(msg) {
-    const scrollToBottom = false;
-    scrollToBottom = element.scrollHeight - element.clientHeight <= element.scrollTop + 1;
+    const scrollToBottom = messageBox.scrollHeight - messageBox.clientHeight <= messageBox.scrollTop + 1;
 
     const messageDiv = document.createElement('div');
     messageBox.appendChild(messageDiv);
