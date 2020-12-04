@@ -14,16 +14,23 @@ app.use('/', (req, res) => {
 });
 
 let messages = [];
+const messageValidationRegex = /<div>|<script>|<button>|<input>/ig;
 
 io.on('connection', (socket) => {
     console.log('\x1b[32m%s\x1b[0m', `Socket Connection ${socket.id}`);
 
-    socket.emit('previousMessages', messages)
+    socket.emit('previousMessages', messages);
 
     socket.on('sendMessage', data => {
-        if(data.message.length > 1000 || data.author.length > 30)
+        if(data.message.length > 1000 ||
+            data.author.length > 30 ||
+            messageValidationRegex.test(data.author) ||
+            messageValidationRegex.test(data.message)){
+            
             return;
+        }
         
+        io.to(socket.id).emit('sendMessage', data);
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
     });

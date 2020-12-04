@@ -26,7 +26,12 @@ chatForm.onsubmit = (event) => {
             message: messageField.value
         };
 
-        renderMessage(messageObj);
+        const messageValidationRegex = /<div>|<script>|<button>|<input>/ig;
+        if(messageValidationRegex.test(messageObj.author) ||
+            messageValidationRegex.test(messageObj.message)){
+                alert('Write a valid text!');
+        }       
+
         socket.emit('sendMessage', messageObj);
         messageField.value = '';
     }
@@ -43,6 +48,6 @@ socket.on('previousMessages', (allMsgs) => {
 });
 
 function renderMessage(msg) {
-    messageBox.innerHTML += `<div><strong>${(msg.author).toString()}</strong><br><p>${(msg.message).toString()}</p></div>`;
+    messageBox.innerHTML += `<div><strong>${msg.author}</strong><br><p>${msg.message}</p></div>`;
     messageBox.scrollTop = messageBox.scrollHeight;
 }
