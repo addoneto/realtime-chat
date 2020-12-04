@@ -21,6 +21,9 @@ io.on('connection', (socket) => {
     socket.emit('previousMessages', messages)
 
     socket.on('sendMessage', data => {
+        if(data.message.length > 1000 || data.author.length > 30)
+            return;
+        
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
     });
